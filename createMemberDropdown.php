@@ -1,22 +1,11 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tennisclub";
-$port = 3307;
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
-
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+include("dbcon.php");
 
 $sql = "SELECT * from member";
 $result = mysqli_query($conn, $sql);
 
-echo "<TABLE border='1'>";
+echo "<select name = 'memberID'>";
 
 while($row = mysqli_fetch_assoc($result)) {
     $id=$row['id'];
@@ -24,7 +13,7 @@ while($row = mysqli_fetch_assoc($result)) {
     $sn=$row['surname'];
     echo "<TR><TD>$id</TD><TD>$fn</TD><TD>$sn</TD></TR>";
 }
-echo "</TABLE>";
+echo "</select>";
 
 mysqli_close($conn); 
 ?>
